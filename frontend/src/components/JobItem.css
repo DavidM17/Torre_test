@@ -1,0 +1,54 @@
+.job-item-container {
+    height: 300px;
+    width: 300px;
+    border-radius: 20px;
+    background-color: rgb(17, 14, 14);
+    transition: transform .2s;
+    overflow: hidden;
+    
+}
+
+.job-item-container:hover{
+    border-style: solid;
+    border-color: #beeb1c;
+    border-width: 1px;
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
+
+.item-img {
+    width: 25%;
+    height: 55%;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #beeb1c;
+    border-width: 1px;
+}
+
+.head-container{
+    padding: 10px;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.head-job{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.head-job h3{
+    color: white;
+}
+
+.head-job h5{
+    color: white;
+}
+.head-job h6{
+    color: white;
+}

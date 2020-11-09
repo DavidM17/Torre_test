@@ -1,0 +1,60 @@
+.container-job-page {
+    
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    vertical-align: auto;
+    grid-column-gap: 20px;
+    row-gap: 20px;
+}
+
+.search-container{
+    
+    text-align: center;
+    padding: 20px;
+    justify-content: center;
+}
+
+.job-input:focus{
+    border-color: #beeb1c;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+}
+
+.search-container h1{
+    color: #beeb1c;
+    font-family: sans-serif;
+}
+
+.job-input {
+    padding-left: 10px;
+    height: 30px;
+    width: 300px;
+    border-radius: 10px;
+    border: none;
+
+}
+
+
+*:focus {
+    outline: none;
+}
+
+.button-search{
+    margin: 20px;
+    background-color: white;
+    height: 30px;
+    width: 70px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgb(0, 158, 179);
+    border-width: 1px;
+}
+
+.button-search:hover{
+    background-color: #d8fa5f;
+    cursor: pointer;
+}
+
