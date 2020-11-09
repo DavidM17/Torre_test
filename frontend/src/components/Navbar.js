@@ -49,11 +49,11 @@ function Navbar() {
               </li>
               <li className='nav-item'>
                 <Link
-                  to='/notes'
+                  to='/analytic'
                   className='nav-links'
                   onClick={closeMobileMenu}
                 >
-                  People
+                  Analytics
                 </Link>
               </li>
             

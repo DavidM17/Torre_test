@@ -1,10 +1,9 @@
 import React,{useState, useEffect} from 'react';
-import './Jobs.css';
-import JobItem from '../../components/JobItem';
+import './Detail.css';
 import axios from 'axios';
 
 
-function Jobs() {
+function Analytic() {
 
     const [query, setQuery] = useState('');
     const [jobs, setJobs] = useState([]);
@@ -31,32 +30,22 @@ function Jobs() {
         handleClick();
     }
 
-    const detailJob = () => {
+    
 
-    }
-
+    
 
     return (
         <>
             <div className="search-container">
                 <h1>Torre Job Search</h1>
                 <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder="Search" className="job-input" onChange={handleQuery}/>
+                    <input type="text" placeholder="Search" className="analytic-input" onChange={handleQuery}/>
                 </form>
                 <button onClick={handleClick} className="button-search">Search</button>
             </div>
-            <div className="container-job-page">
+            <div className="container-analytic-page">
             
-            {
-                    (jobs.length > 0) ?
-                        (jobs.map((job, index) => (
-                            <JobItem data={job} key={index} onClick={detailJob(job)}/>
-
-                        ))) : (
-                            <h1>No Jobs Found</h1>
-                        )
-
-            }
+            Grafica
 
         </div>
         </>
@@ -67,4 +56,4 @@ function Jobs() {
 
 
 
-export default Jobs;
+export default Analytic;
