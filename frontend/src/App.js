@@ -2,7 +2,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Jobs from './pages/JobsPage/Jobs';
-import Analytic from './pages/DetailPage/Analytic';
+import Analytic from './pages/AnalyticPage/Analytic';
 
 function App() {
   return (

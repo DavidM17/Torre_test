@@ -26,6 +26,29 @@ function JobItem(data) {
                 </div>
             </div>
             <div className="body-job">
+                {
+                    (data.data.compensation)?(
+                        (data.data.compensation.data)?(
+                            <h3>{data.data.compensation.data.minAmount} {data.data.compensation.data.currency} {data.data.compensation.data.periodicity}</h3>
+                        ):
+                        (<></>)
+                    ):(<></>)
+                    
+                }
+                <h5>Status: {data.data.status}</h5>
+                {
+                    (data.data.remote) ? (
+                        <h3 style={{color:'#beeb1c'}}>Remote Job</h3>
+                    ):(<></>)
+                }
+
+                {
+                    (data.data.deadline) ? (
+                        <h5>Apply Before:{data.data.deadline}</h5>
+                    ):(<></>)
+                }
+                
+                
                 
             
             </div>

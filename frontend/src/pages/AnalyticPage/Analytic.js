@@ -1,23 +1,127 @@
-import React,{useState, useEffect} from 'react';
-import './Detail.css';
+import React, { useState, useEffect } from 'react';
+import './Analytic.css';
 import axios from 'axios';
+import Highcharts from 'highcharts'
+import bellCurve from 'highcharts/modules/histogram-bellcurve'
+import HighchartsReact from 'highcharts-react-official'
+bellCurve(Highcharts);
 
 
 function Analytic() {
 
     const [query, setQuery] = useState('');
-    const [jobs, setJobs] = useState([]);
+ 
+    const [rawdata, setRawdata] = useState([])
 
+    const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+   
     
-    const handleClick = () => {
-        axios.post('https://search.torre.co/opportunities/_search/?currency=USD%24&page=0&periodicity=hourly&lang=es&size=20&aggregate=false&offset=0',{"skill/role":{"text":query,"experience":"potential-to-develop"}}).
-        then(
-            res => {
-                setJobs(res.data.results);
-                console.log(res.data.results[0].organizations[0].picture)
-                
+   
+    const options = {
+        title: {
+            text: `Average Salary for ${query} ${parseInt(average(rawdata))} USD$/year`,
+            
+                style :{
+                    color: '#ffff'
+                }
+            
+        },
+    
+        xAxis: [{
+            title: { text: 'Data',
+            style :{
+                color: '#3a3737'
+            } },
+            alignTicks: false,
+            labels :{
+                style :{
+                    color: '#3a3737'
+                }
             }
-        ).catch(err => console.log(err));
+        }, {
+            title: { text: 'Histogram',
+            style :{
+                color: '#ffff'
+            } },
+            labels :{
+                style :{
+                    color: '#ffff'
+                }
+            },
+            alignTicks: false,
+            opposite: false
+        }],
+    
+        yAxis: [{
+            title: { text: 'Data',
+            style :{
+                color: '#3a3737'
+            } },
+            labels :{
+                style :{
+                    color: '#3a3737'
+                }
+            }
+        }, {
+            title: { text: 'Histogram',
+            style :{
+                color: '#ffff'
+            } },
+            labels :{
+                style :{
+                    color: '#ffff'
+                }
+            },
+            opposite: true
+        }],
+
+        chart: {
+            backgroundColor: '#3a3737'
+        },
+    
+        plotOptions: {
+            histogram: {
+                accessibility: {
+                    pointDescriptionFormatter: function (point) {
+                        var ix = point.index + 1,
+                            x1 = point.x.toFixed(3),
+                            x2 = point.x2.toFixed(3),
+                            val = point.y;
+                        return ix + '. ' + x1 + ' to ' + x2 + ', ' + val + '.';
+                    }
+                }
+            }
+        },
+    
+        series: [{
+            name: 'Histogram',
+            type: 'histogram',
+            xAxis: 1,
+            yAxis: 1,
+            baseSeries: 's1',
+            zIndex: -1
+        }, {
+            name: 'Data',
+            type: 'scatter',
+            data: rawdata,
+            id: 's1',
+            marker: {
+                radius: 1.5
+            }
+        }]
+    }
+
+    const handleClick = () => {
+        
+         axios.get(`https://cboxplay.herokuapp.com/analytics/salary/${query}`).
+            then(
+                res => {
+                    
+                    setRawdata(res.data);
+                    
+
+                }
+            ).catch(err => console.log(err)); 
 
     }
 
@@ -30,24 +134,30 @@ function Analytic() {
         handleClick();
     }
 
-    
+    useEffect(()=>{
 
-    
+    },[])
 
     return (
         <>
             <div className="search-container">
-                <h1>Torre Job Search</h1>
+                <h1>Torre Salary Analytic Roles/Skills</h1>
                 <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder="Search" className="analytic-input" onChange={handleQuery}/>
+                    <input type="text" placeholder="Ex:Java Developer" className="analytic-input" onChange={handleQuery} />
                 </form>
                 <button onClick={handleClick} className="button-search">Search</button>
             </div>
             <div className="container-analytic-page">
-            
-            Grafica
+                {
+            (rawdata.length > 0) ? (
+                <HighchartsReact highcharts={Highcharts} options={options} />
+            ):(
+            <>
+            </>
+            )
+            }
 
-        </div>
+            </div>
         </>
     )
 
