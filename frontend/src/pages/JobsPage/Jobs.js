@@ -16,11 +16,11 @@ function Jobs() {
 
     const handleClick = () => {
 
-        axios.post('https://search.torre.co/opportunities/_search/?currency=USD%24&page=0&periodicity=hourly&lang=es&size=50&aggregate=false&offset=0', { "skill/role": { "text": query, "experience": "potential-to-develop" } }).
-            then(
+        axios.post('https://search.torre.co/opportunities/_search/?currency=USD%24&page=0&periodicity=hourly&lang=es&size=50&aggregate=false&offset=0', { "skill/role": { "text": query, "experience": "potential-to-develop" } })
+        .then(
                 res => {
                     setJobs(res.data.results);
-                    console.log(res.data.results[0].organizations[0].picture)
+                    
 
                 }
             ).catch(err => console.log(err));
@@ -38,8 +38,11 @@ function Jobs() {
 
     const detailJob = (job) => {
         setOffer(job);
+        
         setDetail(true);
     }
+
+   
 
 
 
@@ -48,7 +51,12 @@ function Jobs() {
         <>
             {
                 (detail) ? (
-                    <Detail data={offer}></Detail>
+                    <>
+                        <div className="back-container">
+                            <button className="back-btn" onClick={() => setDetail(false)}>Regresar</button>
+                        </div>
+                        <Detail data={offer}></Detail>
+                    </>
                 ) : (
                         <>
                             <div className="search-container">
@@ -63,7 +71,10 @@ function Jobs() {
                                 {
                                     (jobs.length > 0) ?
                                         (jobs.map((job, index) => (
-                                            <JobItem data={job} key={index} />
+                                            <div key={index} onClick={() => detailJob(job)}>
+                                                <JobItem data={job} key={index}  />
+                                            </div>
+                                            
 
                                         ))) : (
 

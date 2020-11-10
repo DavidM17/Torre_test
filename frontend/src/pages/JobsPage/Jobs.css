@@ -58,3 +58,24 @@
     cursor: pointer;
 }
 
+.back-container {
+    padding: 20px;
+    
+}
+
+.back-btn {
+    background-color: #d8fa5f;
+    height: 30px;
+    width: 80px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgb(0, 158, 179);
+    border-width: 1px;
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    background-color: #8da730;
+    cursor: pointer;
+}
+

@@ -1,21 +1,18 @@
-import React,{useEffect,useState} from 'react';
+import React from 'react';
 import './JobItem.css';
 
 function JobItem(data) {
    
-    useEffect(()=>{
-        console.log(data.data);
-        
-    },[]);
+    
     return (
         <>
         <div className="job-item-container"> 
             <div className="head-container">
                 {
                     (data.data.organizations[0] !== undefined) ? (
-                        <img src={data.data.organizations[0].picture} className="item-img"></img>
+                        <img src={data.data.organizations[0].picture} className="item-img" alt=""></img>
                     ):(
-                        <img src="https://penidago.com/assets/images/member/no-image.jpg" className="item-img"></img>
+                        <img src="https://penidago.com/assets/images/member/no-image.jpg" className="item-img" alt=""></img>
                     )
                 }
                 
