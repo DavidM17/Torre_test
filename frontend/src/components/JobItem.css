@@ -36,10 +36,11 @@
 
 
 .head-job{
+    width: 220px;
     padding: 10px;
     display: flex;
     flex-direction: column;
-
+    overflow-wrap: break-word;
 }
 
 .head-job h3{

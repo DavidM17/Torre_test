@@ -8,12 +8,12 @@ import { IconContext } from 'react-icons/lib';
 
 function Navbar() {
   const [click, setClick] = useState(false);
-  
+
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  
+
 
   return (
     <>
@@ -21,8 +21,8 @@ function Navbar() {
         <nav className='navbar'>
           <div className='navbar-container container'>
             <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            <img className="logo-torre" src="https://torre-media.s3-us-west-2.amazonaws.com/subtorres/teletrabajo/torre.png"></img>
-            
+              <img className="logo-torre" src="https://torre-media.s3-us-west-2.amazonaws.com/subtorres/teletrabajo/torre.png"></img>
+
               Torre
             </Link>
             <div className='menu-icon' onClick={handleClick}>
@@ -43,7 +43,7 @@ function Navbar() {
                   Analytics
                 </Link>
               </li>
-            
+
             </ul>
           </div>
         </nav>

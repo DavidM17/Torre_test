@@ -41,16 +41,17 @@
 
 .information p{
     color: white;
+    padding-top: 10px;
 }
 
 .information h2{
+    padding-top: 30px;
     color: #beeb1c;
-}
-
-
-.information h2{
     text-transform: capitalize;
 }
+
+
+
 
 .members{
     width: 100%;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Analytic.css';
+import Loader from '../../components/Loader';
 import axios from 'axios';
 import Highcharts from 'highcharts'
 import bellCurve from 'highcharts/modules/histogram-bellcurve'
@@ -10,65 +11,73 @@ bellCurve(Highcharts);
 function Analytic() {
 
     const [query, setQuery] = useState('');
- 
-    const [rawdata, setRawdata] = useState([])
+    const [rawdata, setRawdata] = useState([]);
+    const [showloader, setShowloader] = useState(false);
 
-    const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
-   
-    
-   
+    const average = arr => arr.reduce((p, c) => p + c, 0) / arr.length;
+
+
+
     const options = {
         title: {
             text: `Average Salary for ${query} ${parseInt(average(rawdata))} USD$/year`,
-            
-                style :{
-                    color: '#ffff'
-                }
-            
+
+            style: {
+                color: '#ffff'
+            }
+
         },
-    
+
         xAxis: [{
-            title: { text: 'Data',
-            style :{
-                color: '#3a3737'
-            } },
+            title: {
+                text: 'Data',
+                style: {
+                    color: '#3a3737'
+                }
+            },
             alignTicks: false,
-            labels :{
-                style :{
+            labels: {
+                style: {
                     color: '#3a3737'
                 }
             }
         }, {
-            title: { text: 'Histogram',
-            style :{
-                color: '#ffff'
-            } },
-            labels :{
-                style :{
+            title: {
+                text: 'Histogram',
+                style: {
+                    color: '#ffff'
+                }
+            },
+            labels: {
+                style: {
                     color: '#ffff'
                 }
             },
             alignTicks: false,
             opposite: false
         }],
-    
+
         yAxis: [{
-            title: { text: 'Data',
-            style :{
-                color: '#3a3737'
-            } },
-            labels :{
-                style :{
+            title: {
+                text: 'Data',
+                style: {
+                    color: '#3a3737'
+                }
+            },
+            labels: {
+                style: {
                     color: '#3a3737'
                 }
             }
         }, {
-            title: { text: 'Histogram',
-            style :{
-                color: '#ffff'
-            } },
-            labels :{
-                style :{
+            title: {
+                text: 'Histogram',
+                style: {
+                    color: '#ffff'
+                }
+            },
+            labels: {
+                style: {
                     color: '#ffff'
                 }
             },
@@ -78,7 +87,7 @@ function Analytic() {
         chart: {
             backgroundColor: '#3a3737'
         },
-    
+
         plotOptions: {
             histogram: {
                 accessibility: {
@@ -92,7 +101,7 @@ function Analytic() {
                 }
             }
         },
-    
+
         series: [{
             name: 'Histogram',
             type: 'histogram',
@@ -112,16 +121,17 @@ function Analytic() {
     }
 
     const handleClick = () => {
-        
-         axios.get(`https://cboxplay.herokuapp.com/analytics/salary/${query}`).
+
+        setShowloader(true);
+        axios.get(`https://cboxplay.herokuapp.com/analytics/salary/${query}`).
             then(
                 res => {
-                    
+                    setShowloader(false);
                     setRawdata(res.data);
-                    
+
 
                 }
-            ).catch(err => console.log(err)); 
+            ).catch(err => console.log(err));
 
     }
 
@@ -134,9 +144,9 @@ function Analytic() {
         handleClick();
     }
 
-    useEffect(()=>{
+    useEffect(() => {
 
-    },[])
+    }, [])
 
     return (
         <>
@@ -147,15 +157,26 @@ function Analytic() {
                 </form>
                 <button onClick={handleClick} className="button-search">Search</button>
             </div>
+
+            <div className="loader-analytic">
+                {
+                    (showloader) ? (
+                        <Loader />
+                    ) : (
+                            <>
+                            </>
+                        )
+                }
+            </div>
+
             <div className="container-analytic-page">
                 {
-            (rawdata.length > 0) ? (
-                <HighchartsReact highcharts={Highcharts} options={options} />
-            ):(
-            <>
-            </>
-            )
-            }
+                    (rawdata.length > 0) ? (
+                        <HighchartsReact highcharts={Highcharts} options={options} />
+                    ) : (
+                            <h1>Search for a Skill/Role</h1>
+                        )
+                }
 
             </div>
         </>

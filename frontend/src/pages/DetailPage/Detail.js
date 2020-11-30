@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import './Detail.css';
 import axios from 'axios';
 
@@ -6,21 +6,21 @@ import axios from 'axios';
 
 function Detail(data) {
 
-    const [info,setInfo] = useState([])
-    const [show,setShow] = useState(false)
+    const [info, setInfo] = useState([])
+    const [show, setShow] = useState(false)
 
-    useEffect(()=>{
-    
+    useEffect(() => {
+
         axios.get(`https://torre.co/api/opportunities/${data.data.id}`)
-        .then(
+            .then(
                 res => {
-                    
+
                     setInfo(res.data)
-                    
+
                     setShow(true)
                 }
             ).catch(err => console.log(err));
-    },[])
+    }, [])
 
     return (
         <>
@@ -63,44 +63,38 @@ function Detail(data) {
                 <div className="members">
                     {
                         (show) ? (
-                        (data.data.members.map((detail, index) => (
-                            <div key={index} className="poster">
-                                <img src={detail.picture} alt=""></img>
-                                <h5 style={{color:'#beeb1c'}}>Member</h5>
-                                <h5>{detail.name}</h5>
-                            </div>
-                                
-                        )))   ):(<></>)                    
+                            (data.data.members.map((detail, index) => (
+                                <div key={index} className="poster">
+                                    <img src={detail.picture} alt=""></img>
+                                    <h5 style={{ color: '#beeb1c' }}>Member</h5>
+                                    <h5>{detail.name}</h5>
+                                </div>
+
+                            )))) : (<></>)
                     }
                 </div>
                 <div className="information">
 
-                {
-                    (show) ? (
-                        (info.details.length > 0) ?
-                            (info.details.map((detail, index) => (
-                                <div key={index}>
-                                <>
-                                <h2>{detail.code}</h2>
-                                <p>{detail.content}</p>
-                                </>
-                                </div>
-                            ))) : (
+                    {
+                        (show) ? (
+                            (info.details.length > 0) ?
+                                (info.details.map((detail, index) => (
+                                    <div key={index}>
+                                        <>
+                                            <h2>{detail.code}</h2>
+                                            <p>{detail.content}</p>
+                                        </>
+                                    </div>
+                                ))) : (
 
-                                <h1>No Jobs</h1>
+                                    <h1>No Jobs</h1>
 
+                                )
+                        ) : (<></>)
 
-                            )
-                    ):(<></>)
-                        
-
-                    
-                } 
+                    }
 
                 </div>
-                
-
-
 
             </div>
         </>
