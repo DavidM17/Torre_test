@@ -1,19 +1,15 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import './Navbar.css';
 import { IconContext } from 'react-icons/lib';
 
 
-
 function Navbar() {
   const [click, setClick] = useState(false);
 
-
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-
-
 
   return (
     <>
@@ -24,6 +20,7 @@ function Navbar() {
               <img className="logo-torre" src="https://torre-media.s3-us-west-2.amazonaws.com/subtorres/teletrabajo/torre.png"></img>
 
               Torre
+
             </Link>
             <div className='menu-icon' onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
@@ -52,7 +49,6 @@ function Navbar() {
                   Analytics
                 </Link>
               </li>
-              
 
             </ul>
           </div>

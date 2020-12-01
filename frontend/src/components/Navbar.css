@@ -118,7 +118,7 @@
     }
   
     .nav-links:hover {
-      color: #04720d;
+      color: #beeb1c;
       transform: scale(1.2);
       transition: all 0.3s ease;
     }
@@ -152,8 +152,7 @@
       color: #fff;
       font-size: 2rem;
     }
-  
-    
+
   }
   
   

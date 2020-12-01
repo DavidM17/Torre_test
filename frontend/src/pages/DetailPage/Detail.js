@@ -10,7 +10,7 @@ function Detail(data) {
     const [show, setShow] = useState(false)
 
     useEffect(() => {
-
+        window.scrollTo(0, 0)
         axios.get(`https://torre.co/api/opportunities/${data.data.id}`)
             .then(
                 res => {
@@ -101,7 +101,5 @@ function Detail(data) {
     )
 
 }
-
-
 
 export default Detail;

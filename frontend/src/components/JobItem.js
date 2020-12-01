@@ -45,14 +45,10 @@ function JobItem(data) {
                         ) : (<></>)
                     }
 
-
                 </div>
-
-
             </div>
         </>
     );
-
 
 }
 export default JobItem;

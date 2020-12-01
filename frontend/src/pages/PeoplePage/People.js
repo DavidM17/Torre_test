@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
-import './Jobs.css';
-import JobItem from '../../components/JobItem';
-import Detail from '../../pages/DetailPage/Detail';
+import './People.css';
+import PersonItem from '../../components/PersonItem';
+import DetailUser from '../DetailUser/DetailUser';
 import Loader from '../../components/Loader';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import axios from 'axios';
 
-
-function Jobs() {
+function People() {
 
     const [query, setQuery] = useState('');
-    const [jobs, setJobs] = useState([]);
-    const [offer, setOffer] = useState([]);
+    const [people, setPeople] = useState([]);
+    const [person, setPerson] = useState([]);
     const [detail, setDetail] = useState(false);
     const [showloader, setShowloader] = useState(false);
     const [firstLoad, setFirstload] = useState(false);
@@ -20,13 +19,12 @@ function Jobs() {
 
         setShowloader(true);
 
-        axios.post('https://search.torre.co/opportunities/_search/?currency=USD%24&page=0&periodicity=hourly&lang=es&size=50&aggregate=false&offset=0', { "skill/role": { "text": query, "experience": "potential-to-develop" } })
+        axios.post('https://search.torre.co/people/_search/?size=30&lang=es&aggregate=false&offset=0', { name: { term: query } })
             .then(
                 res => {
                     setShowloader(false);
                     setFirstload(true);
-                    setJobs(res.data.results);
-
+                    setPeople(res.data.results);
                 }
             ).catch(err => console.log(err));
 
@@ -41,75 +39,71 @@ function Jobs() {
         handleClick();
     }
 
-    const detailJob = (job) => {
-        setOffer(job);
-
+    const detailPerson = (person) => {
+        setPerson(person);
         setDetail(true);
+
     }
 
     return (
         <>
             {
+
                 (detail) ? (
                     <>
                         <div className="back-container">
                             <ArrowBackIcon className="icon-arrow" style={{ color: 'white', fontsize: '50px' }} onClick={() => setDetail(false)}></ArrowBackIcon>
-                            <h1 onClick={() => setDetail(false)}>Go Back to {query} jobs</h1>
+                            <h1 onClick={() => setDetail(false)}>Go Back to {query} search</h1>
+
                         </div>
 
-                        <Detail data={offer}></Detail>
+                        <DetailUser data={person}></DetailUser>
 
                     </>
                 ) : (
                         <>
                             <div className="search-container">
-                                <h1>Torre Job Search</h1>
+                                <h1>Torre People Search</h1>
                                 <form onSubmit={handleSubmit}>
                                     <input type="text" placeholder="Search" className="job-input" onChange={handleQuery} />
                                 </form>
                                 <button onClick={handleClick} className="button-search">Search</button>
                             </div>
-                            <>
+                            <div className="loader-people">
                                 {
                                     (showloader) ? (
-                                        <div className="loader-jobs">
-                                            <Loader />
-                                        </div>
+                                        <Loader />
                                     ) : (<></>)
                                 }
+                            </div>
 
-                            </>
-                            <div className="container-job-page">
+                            <div className="container-people-page">
 
                                 {
-                                    (jobs.length > 0) ?
-                                        (jobs.map((job, index) => (
-                                            <div key={index} onClick={() => detailJob(job)}>
-                                                <JobItem data={job} key={index} />
+                                    (people.length > 0) ?
+                                        (people.map((person, index) => (
+                                            <div key={index} onClick={() => detailPerson(person)}>
+                                                <PersonItem data={person} key={index} />
                                             </div>
                                         ))) : (
                                             <>
                                                 {
-                                                    (jobs && firstLoad) ? (
-                                                        <h1>No Jobs</h1>
+                                                    (people && firstLoad) ? (
+                                                        <h1>No Person with this name</h1>
                                                     ) : (<></>)
 
                                                 }
                                             </>
                                         )
-
                                 }
 
                             </div>
                         </>
                     )
             }
-
         </>
     )
 
 }
 
-
-
-export default Jobs;
+export default People;

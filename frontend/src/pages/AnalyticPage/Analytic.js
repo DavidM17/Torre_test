@@ -16,8 +16,6 @@ function Analytic() {
 
     const average = arr => arr.reduce((p, c) => p + c, 0) / arr.length;
 
-
-
     const options = {
         title: {
             text: `Average Salary for ${query} ${parseInt(average(rawdata))} USD$/year`,
@@ -123,15 +121,12 @@ function Analytic() {
     const handleClick = () => {
 
         setShowloader(true);
-        axios.get(`https://cboxplay.herokuapp.com/analytics/salary/${query}`).
-            then(
-                res => {
-                    setShowloader(false);
-                    setRawdata(res.data);
-
-
-                }
-            ).catch(err => console.log(err));
+        axios.get(`https://cboxplay.herokuapp.com/analytics/salary/${query}`).then(
+            res => {
+                setShowloader(false);
+                setRawdata(res.data);
+            }
+        ).catch(err => console.log(err));
 
     }
 
@@ -162,10 +157,7 @@ function Analytic() {
                 {
                     (showloader) ? (
                         <Loader />
-                    ) : (
-                            <>
-                            </>
-                        )
+                    ) : (<></>)
                 }
             </div>
 
@@ -182,9 +174,6 @@ function Analytic() {
         </>
     )
 
-
 }
-
-
 
 export default Analytic;
