@@ -16,8 +16,6 @@ function Jobs() {
     const [showloader, setShowloader] = useState(false);
     const [firstLoad, setFirstload] = useState(false);
 
-
-
     const handleClick = () => {
 
         setShowloader(true);
@@ -56,11 +54,12 @@ function Jobs() {
                     <>
                         <div className="back-container">
                             <ArrowBackIcon className="icon-arrow" style={{ color: 'white', fontsize: '50px' }} onClick={() => setDetail(false)}></ArrowBackIcon>
-                            <button className="back-btn" onClick={() => setDetail(false)}>Go Back</button>
+                             <h1 onClick={() => setDetail(false)}>Go Back to {query} jobs</h1>
+
                         </div>
-                        <div className="detail-container">
-                            <Detail data={offer}></Detail>
-                        </div>
+                        
+                        <Detail data={offer}></Detail>
+                        
                     </>
                 ) : (
                         <>
@@ -71,17 +70,19 @@ function Jobs() {
                                 </form>
                                 <button onClick={handleClick} className="button-search">Search</button>
                             </div>
-                            <div className="loader-jobs">
+                            <>
                                 {
                                     (showloader) ? (
-                                        <Loader />
+                                        <div className="loader-jobs">
+                                            <Loader />
+                                        </div>
                                     ) : (
                                             <>
                                             </>
                                         )
                                 }
-                            </div>
 
+                            </>
                             <div className="container-job-page">
 
                                 {
@@ -113,7 +114,6 @@ function Jobs() {
 
         </>
     )
-
 
 }
 

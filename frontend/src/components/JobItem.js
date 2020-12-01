@@ -10,7 +10,7 @@ function JobItem(data) {
                 <div className="head-container">
                     {
                         (data.data.organizations[0] !== undefined) ? (
-                            <img src={data.data.organizations[0].picture} className="item-img" alt=""></img>
+                            <img src={data.data.organizations[0].picture} className="item-img-job" alt=""></img>
                         ) : (
                                 <img src="https://penidago.com/assets/images/member/no-image.jpg" className="item-img" alt=""></img>
                             )

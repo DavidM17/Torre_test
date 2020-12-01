@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Jobs from './pages/JobsPage/Jobs';
 import Analytic from './pages/AnalyticPage/Analytic';
+import People from './pages/PeoplePage/People';
 
 function App() {
   return (
@@ -11,10 +12,9 @@ function App() {
       <Switch>
           <Route path='/' exact component={Jobs}/>
           <Route path='/analytic' exact component={Analytic}/>
-          
-        </Switch>
+          <Route path='/people' exact component={People}/>
+      </Switch>
     </Router>
-    
   );
 }
 

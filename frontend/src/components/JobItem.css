@@ -17,13 +17,13 @@
 }
 
 
-.item-img {
+.item-img-job {
     width: 25%;
     height: 55%;
     border-radius: 50%;
     border-style: solid;
     border-color: #beeb1c;
-    border-width: 1px;
+    border-width: 2px;
 }
 
 .head-container{

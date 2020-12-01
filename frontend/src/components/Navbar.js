@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import './Navbar.css';
@@ -36,6 +36,15 @@ function Navbar() {
               </li>
               <li className='nav-item'>
                 <Link
+                  to='/people'
+                  className='nav-links'
+                  onClick={closeMobileMenu}
+                >
+                  People
+                </Link>
+              </li>
+              <li className='nav-item'>
+                <Link
                   to='/analytic'
                   className='nav-links'
                   onClick={closeMobileMenu}
@@ -43,6 +52,7 @@ function Navbar() {
                   Analytics
                 </Link>
               </li>
+              
 
             </ul>
           </div>

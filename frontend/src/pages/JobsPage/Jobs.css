@@ -1,6 +1,6 @@
 .container-job-page {
     
-    padding: 20px;
+    padding: 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -64,7 +64,15 @@
     top: 100;
     padding: 10px;
     display: flex;
-    background-color: rgb(94, 93, 93);    
+    background-color: rgb(94, 93, 93);   
+}
+
+.back-container h1{
+    padding-top: 5px;
+}
+
+.back-container h1:hover{
+    cursor: pointer;
 }
 
 .back-btn {
@@ -93,9 +101,6 @@
     justify-content: center;
 }
 
-.detail-container{
-    margin-top: 50px;
-}
 
 .icon-arrow:hover{
     cursor: pointer;
